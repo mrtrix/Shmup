@@ -108,11 +108,11 @@
 #include <android/log.h>
 #include <android_native_app_glue.h>
 
-#include "../../../src/dEngine.h"
-#include "../../../src/io_interface.h"
-#include "../../../src/menu.h"
-#include "../../../src/timer.h"
-#include "../../../src/native_URL.h"
+#include <dEngine.h>
+#include <io_interface.h>
+#include <menu.h>
+#include <timer.h>
+#include <native_URL.h>
 
 #include "android_display.h"
 #include "android_filesystem.h"
@@ -129,7 +129,7 @@
 #define  LOGI(...)  		__android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGW(...)  		__android_log_print(ANDROID_LOG_WARN,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  		__android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
-#define printf(fmt,args...) __android_log_print(ANDROID_LOG_INFO  ,LOG_TAG, fmt, ##args)
+#define printf(fmt,args...)	__android_log_print(ANDROID_LOG_INFO,LOG_TAG,fmt,##args)
 
 int gameOn = 0;
 void AND_SHMUP_Finish(){
@@ -154,7 +154,7 @@ void ListDirectory(AAssetManager*      assetManager, const char* dirName){
 			while((assetURL = AAssetDir_getNextFileName(directory)) != 0)
 			{
 				fileCount++;
-				LOGE(assetURL);
+				LOGE("%s", assetURL);
 			}
 			//fflush(stdout);
 
@@ -333,7 +333,7 @@ void registerEnvironmentAndActivity(ANativeActivity* activity){
 
 	goToWebsite = (*jni)->GetMethodID(jni, activityClass, methodName, "(Ljava/lang/String;)V");
 	if (!goToWebsite){
-		LOGE("Unable to find method %d in class.\n",methodName);
+		LOGE("Unable to find method %d in class.\n", (int)methodName);
 		return;
 	}
 	else

@@ -1,11 +1,11 @@
-#include "../../../src/filesystem.h"
+#include <filesystem.h>
 #include "android/asset_manager.h"
 #include "android/native_activity.h"
 
 #define  LOG_TAG    		"net.fabiensanglard.native"
 #include <android/log.h>
 #define printf(fmt,args...) __android_log_print(ANDROID_LOG_INFO  ,LOG_TAG, fmt, ##args)
-#include "../../../src/log.h"
+#include <log.h>
 
 //For struct android_app
 #include <android_native_app_glue.h>

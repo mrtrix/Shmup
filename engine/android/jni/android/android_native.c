@@ -18,10 +18,10 @@ void Native_LoginGameCenter(void){}
 
 
 //ITextureloader.h
-#include "../../src/texture.h"
-#include "../libpng/png.h"
-#include "../../src/filesystem.h"
-#include "../../src/log.h"
+#include <texture.h>
+#include <png.h>
+#include <filesystem.h>
+#include <log.h>
 
 filehandle_t* file;
 

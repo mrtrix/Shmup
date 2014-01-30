@@ -1,7 +1,7 @@
 #include <jni.h>
 #include <android_native_app_glue.h>
-#include "../../../src/native_URL.h"
-#include "../../../src/log.h"
+#include <native_URL.h>
+#include <log.h>
 //#include "stdlib.h"
 
 extern JNIEnv* env;

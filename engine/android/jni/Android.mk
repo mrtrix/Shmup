@@ -10,23 +10,16 @@ include $(call all-subdir-makefiles)
 include $(CLEAR_VARS)
 LOCAL_PATH := $(SAVED_PATH)
 
-
 # Define ANDROID among other things. This is mandatory so Shmup engine can compile properly.
 LOCAL_CFLAGS += -DANDROID -DNATIVE_ACTIVITY -DSHMUP_VERSION_FULL
+LOCAL_C_INCLUDES += $(NDK_APP_PROJECT_PATH)/../src jni/libpng
 
 #Set the name of the libX.so (libshmup.so)
 LOCAL_MODULE    := shmup
 
-
-
-
-
 #Building list of files specific to Android
 ANDROID_SHMUP := $(wildcard $(LOCAL_PATH)/android/*.c) 
 ANDROID_SHMUP := $(ANDROID_SHMUP:$(LOCAL_PATH)/%=%) 
-
-
-
 
 #Building list of Shmup engines source files.
 SHMUP_ENGINE := $(wildcard $(LOCAL_PATH)/../../src/*.c) 
@@ -43,10 +36,10 @@ SHMUP_ENGINE:= $(subst $(toRemove),$(empty),$(SHMUP_ENGINE))
 #LOCAL_ARM_MODE   := arm
 
 #Combining the two list into one
-LOCAL_SRC_FILES = $(ANDROID_SHMUP) $(SHMUP_ENGINE) 
+LOCAL_SRC_FILES := $(ANDROID_SHMUP) $(SHMUP_ENGINE) 
 
 #Compiler flags !!!
-LOCAL_LDLIBS    := -Wall -Wextra -Wmissing-prototypes -llog -landroid -lEGL -lGLESv1_CM -lGLESv2 -z -lOpenSLES 
+LOCAL_LDLIBS    := -Wall -Wextra -Wmissing-prototypes -llog -landroid -lEGL -lGLESv1_CM -lGLESv2 -lz -lOpenSLES 
 LOCAL_STATIC_LIBRARIES := libzip libpng android_native_app_glue 
 
 #Collect all variables since last CLEAR_VARS and compile the shared .so library
